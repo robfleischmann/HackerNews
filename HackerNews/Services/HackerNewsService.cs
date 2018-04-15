@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Caching;
-using System.IO;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -13,7 +12,7 @@ namespace HackerNews.Services
     public class HackerNewsService
     {
         // Define our cache timeout value
-        const double CACHETIMEOUT = 60.0;
+        const double CACHETIMEOUT = 240.0;
 
         /// <summary>
         /// Gets the list of story IDs from the HackerNews API
@@ -52,6 +51,11 @@ namespace HackerNews.Services
             return stories;
         }
 
+        /// <summary>
+        /// Get's the details for the passed in best story IDs
+        /// </summary>
+        /// <param name="storyIDs"></param>
+        /// <returns></returns>
         public static async Task<List<BestStoriesModel>> GetBestStories(List<int> storyIDs)
         {
             // No IDs, no results
